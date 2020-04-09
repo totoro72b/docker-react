@@ -1,0 +1,26 @@
+# filename: docker-compose.yml
+version: '3'
+services:
+  web:
+    stdin_open: true
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      # maps local 4001 to container's 3000
+      - '4001:3000'
+    volumes:
+      # leave alone container's /app/node_modules dir
+      - /app/node_modules 
+      # map local dir to container's /app dir
+      - .:/app 
+
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules 
+      - .:/app
+    command: ["npm", "run" ,"test"]
+

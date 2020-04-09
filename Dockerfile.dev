@@ -1,0 +1,13 @@
+# docker compose file for development
+FROM node:alpine
+# a dir exists within node alpine
+WORKDIR '/app'
+
+# dependencies
+COPY package.json .
+RUN npm install
+
+# copy over code
+COPY . .
+
+CMD ["npm", "run", "start"]
