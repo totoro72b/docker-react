@@ -1,10 +1,15 @@
 language: generic
 sudo: required
+
+# tell travis we need a copy of docker running
 services:
   - docker
 
+# build our image using Dockerfile.dev (dev file contains code for running test suite)
 before_install:
   - docker build -t temp-img -f Dockerfile.dev .
 
+# tell travis how to run test suite
 script:
   - docker run -e CI=true temp-img npm run test
+# TODO tell travis how to deploy code to AWS
