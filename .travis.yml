@@ -12,4 +12,17 @@ before_install:
 # tell travis how to run test suite
 script:
   - docker run -e CI=true temp-img npm run test
-# TODO tell travis how to deploy code to AWS
+
+# tell travis how to deploy code to AWS
+deploy:
+  provider: elasticbeanstalk # travis CI will do a lot for this config
+  region: "us-east-1"
+  app: "docker-react-proj"
+  env: "DockerReactProj-env"
+  bucket_name: "elasticbeanstalk-us-east-1-839435281998"
+  bucket_path: "docker-react-proj"
+  on:
+    branch: master # only re-deploy when code changes on master
+# access key comes from travis env variables (do not put secrets in github code!)
+access_key_id: $AWS_ACCESS_KEY
+secret_access_key: $AWS_SECRET_KEY
