@@ -23,6 +23,6 @@ deploy:
   bucket_path: "docker-react-proj"
   on:
     branch: master # only re-deploy when code changes on master
-# access key comes from travis env variables (do not put secrets in github code!)
-access_key_id: $AWS_ACCESS_KEY
-secret_access_key: $AWS_SECRET_KEY
+  # access key comes from travis env variables (do not put secrets in github code!)
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
